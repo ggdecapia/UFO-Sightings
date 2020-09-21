@@ -26,6 +26,6 @@ function runEnter()
     var inputValue = inputElement.property("value");
     console.log('inputValue: ', inputValue);
     
-    var filteredData = tableData.filter(sighting => sighting.datetime === inputValue);
+    var filteredData = tableData.filter(sighting => new Date(sighting.datetime).getTime() === new Date(inputValue).getTime());
     console.log('filteredData:', filteredData);
 }
