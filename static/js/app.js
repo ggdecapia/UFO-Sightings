@@ -20,12 +20,35 @@ function runEnter()
     
     // Select the input element and get the raw HTML node
     var inputElement = d3.select("#datetime");
-    console.log('inputElement: ', inputElement);
 
     // Get the value property of the input element
     var inputValue = inputElement.property("value");
-    console.log('inputValue: ', inputValue);
     
     var filteredData = tableData.filter(sighting => new Date(sighting.datetime).getTime() === new Date(inputValue).getTime());
     console.log('filteredData:', filteredData);
-}
+
+    // select the tbody element by class name
+    var tableBody = d3.select(".table-body");
+
+    tableBody.html("");
+    
+    var tdcounter = 0;
+    var trcounter = 0;
+
+    console.log(`filteredData.length: ${filteredData.length}`);
+    
+    // read through the filtered data and write into rows/cells of the table
+    filteredData.forEach((filteredRow) => {
+        var row = tableBody.append("tr");
+        trcounter++;
+        Object.entries(filteredRow).forEach(([key, value]) => {
+          var cell = row.append("td");
+          cell.text(value);
+          tdcounter++;
+        });
+    });
+
+    console.log(`trcounter: ${trcounter}`);
+    console.log(`tdcounter: ${tdcounter}`);
+
+};
