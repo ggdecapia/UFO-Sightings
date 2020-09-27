@@ -32,23 +32,13 @@ function runEnter()
 
     tableBody.html("");
     
-    var tdcounter = 0;
-    var trcounter = 0;
-
-    console.log(`filteredData.length: ${filteredData.length}`);
-    
     // read through the filtered data and write into rows/cells of the table
     filteredData.forEach((filteredRow) => {
         var row = tableBody.append("tr");
-        trcounter++;
         Object.entries(filteredRow).forEach(([key, value]) => {
           var cell = row.append("td");
           cell.text(value);
-          tdcounter++;
         });
     });
-
-    console.log(`trcounter: ${trcounter}`);
-    console.log(`tdcounter: ${tdcounter}`);
 
 };
